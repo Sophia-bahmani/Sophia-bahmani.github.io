@@ -299,45 +299,53 @@
       <!-- HOME -->
       <section id="home" class="tab-content active">
         <h2>Home</h2>
+
+        <p>
+          Hi, I’m Sophia. My current research focuses on progressive
+          personalization of large language models for predictive typing and
+          keystroke savings — teaching LLMs to adapt to individual users so they
+          type less while saying the same thing.
+        </p>
+
         <pre><code>#!/usr/bin/env python3
-        # -*- coding: utf-8 -*-
-
-        class NLPLinguist:
-            def __init__(self):
-                self.name = "Sophia Bahmani"
-                self.role = "NLP &amp; Linguistics Researcher"
-                self.research_interests = [
-                    "large language models",
-                    "personalization",
-                    "n-gram statistics",
-                    "syntax &amp; semantics",
-                    "corpus linguistics",
-                ]
-                self.languages_spoken = ["en_US"]  # add your own codes here :)
-        
-                self.project_title = (
-                    "Progressive Personalization of Large Language Models "
-                    "for Predictive Typing and Keystroke Savings"
-                )
-        
-            def favorite_ngram(self):
-                return ("natural", "language", "processing")
-        
-            def introduce(self):
-                ngram = " ".join(self.favorite_ngram())
-                print(f"👋 Hi, I'm {self.name} — {self.role}.")
-                print(f"I spend a lot of time thinking about '{ngram}' and how LLMs handle it.")
-                print(f"My current research: {self.project_title}.")
-                print(
-                    "In short, I study how to personalize LLMs so they adapt to each user "
-                    "and save them keystrokes while typing."
-                )
-        if __name__ == "__main__":
-        me = NLPLinguist()
-        me.introduce()</code></pre>
+# -*- coding: utf-8 -*-
 
 
-       
+class NLPLinguist:
+    def __init__(self):
+        self.name = "Sophia Bahmani"
+        self.role = "NLP &amp; Linguistics Researcher"
+        self.research_interests = [
+            "large language models",
+            "personalization",
+            "n-gram statistics",
+            "syntax &amp; semantics",
+            "corpus linguistics",
+        ]
+        self.languages_spoken = ["en_US"]  # add your own codes here :)
+
+        self.project_title = (
+            "Progressive Personalization of Large Language Models "
+            "for Predictive Typing and Keystroke Savings"
+        )
+
+    def favorite_ngram(self):
+        return ("natural", "language", "processing")
+
+    def introduce(self):
+        ngram = " ".join(self.favorite_ngram())
+        print(f"👋 Hi, I'm {self.name} — {self.role}.")
+        print(f"I spend a lot of time thinking about '{ngram}' and how LLMs handle it.")
+        print(f"My current research: {self.project_title}.")
+        print(
+            "In short, I study how to personalize LLMs so they adapt to each user "
+            "and save them keystrokes while typing."
+        )
+
+
+if __name__ == "__main__":
+    me = NLPLinguist()
+    me.introduce()</code></pre>
       </section>
 
       <!-- TEACHING -->
@@ -422,55 +430,3 @@
         </p>
       </section>
     </main>
-
-    <footer>
-      <div>
-        Built with plain HTML, CSS, and a tiny bit of JavaScript —
-        like a minimal n‑gram model building up a whole sentence.
-      </div>
-    </footer>
-
-    <script>
-      // ---------- TYPEWRITER EFFECT FOR YOUR NAME ----------
-      document.addEventListener("DOMContentLoaded", () => {
-        const typedNameEl = document.getElementById("typed-name");
-        const fullName = "Sophia Bahmani"; // change this if you like
-        let index = 0;
-
-        function typeNextChar() {
-          if (!typedNameEl) return;
-          if (index <= fullName.length) {
-            typedNameEl.textContent = fullName.slice(0, index);
-            index++;
-            setTimeout(typeNextChar, 130); // typing speed in ms
-          }
-        }
-
-        typeNextChar();
-      });
-
-      // ---------- TABS LOGIC ----------
-      const buttons = document.querySelectorAll(".tab-button");
-      const sections = document.querySelectorAll(".tab-content");
-
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const target = btn.getAttribute("data-tab");
-
-          // update button states
-          buttons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-
-          // show / hide sections
-          sections.forEach((sec) => {
-            if (sec.id === target) {
-              sec.classList.add("active");
-            } else {
-              sec.classList.remove("active");
-            }
-          });
-        });
-      });
-    </script>
-  </body>
-</html>
