@@ -299,23 +299,45 @@
       <!-- HOME -->
       <section id="home" class="tab-content active">
         <h2>Home</h2>
-        <p>
-          Hi, I’m Sophia. Welcome to my tiny NLP corner on the internet. I’m
-          interested in how we can teach machines to understand (or at least
-          <em>model</em>) human language – from classic n‑gram models to modern
-          large language models.
-        </p>
-        <p>
-          On this site you can find information about my teaching, education,
-          CV, and publications. I’m especially excited about projects that
-          connect linguistics with neural language models.
-        </p>
+        <pre><code>#!/usr/bin/env python3
+        # -*- coding: utf-8 -*-
 
-        <p>
-          Example idea: measuring how often a phrase appears in a corpus as an
-          n‑gram versus how an LLM predicts it. Think of it as comparing
-          <code>P("language" | "natural")</code> in data vs. in a model.
-        </p>
+        class NLPLinguist:
+            def __init__(self):
+                self.name = "Sophia Bahmani"
+                self.role = "NLP &amp; Linguistics Researcher"
+                self.research_interests = [
+                    "large language models",
+                    "personalization",
+                    "n-gram statistics",
+                    "syntax &amp; semantics",
+                    "corpus linguistics",
+                ]
+                self.languages_spoken = ["en_US"]  # add your own codes here :)
+        
+                self.project_title = (
+                    "Progressive Personalization of Large Language Models "
+                    "for Predictive Typing and Keystroke Savings"
+                )
+        
+            def favorite_ngram(self):
+                return ("natural", "language", "processing")
+        
+            def introduce(self):
+                ngram = " ".join(self.favorite_ngram())
+                print(f"👋 Hi, I'm {self.name} — {self.role}.")
+                print(f"I spend a lot of time thinking about '{ngram}' and how LLMs handle it.")
+                print(f"My current research: {self.project_title}.")
+                print(
+                    "In short, I study how to personalize LLMs so they adapt to each user "
+                    "and save them keystrokes while typing."
+                )
+        if __name__ == "__main__":
+        me = NLPLinguist()
+        me.introduce()</code></pre>
+
+
+       
       </section>
 
       <!-- TEACHING -->
