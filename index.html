@@ -2,112 +2,253 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Sophia Bahmani | NLP & Linguistics</title>
+    <title>sophia@nlp:~$ portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      /* ---------- BASE LAYOUT ---------- */
       * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
       body {
-        margin: 0;
         min-height: 100vh;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        font-size: 20px;
-        background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
-        color: #e5e7eb;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        background: #0c0c0c;
+        color: #00ff00;
+        padding: 20px;
+        line-height: 1.6;
       }
 
-      /* subtle "token" looking grid in the background */
-      .bg-pattern {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: 0.16;
-        background-image: linear-gradient(
-            rgba(148, 163, 184, 0.25) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            90deg,
-            rgba(148, 163, 184, 0.25) 1px,
-            transparent 1px
-          );
-        background-size: 26px 26px;
-        z-index: 0;
+      /* Terminal Window */
+      .terminal {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #1e1e1e;
+        border: 2px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
+        overflow: hidden;
       }
 
-      header,
-      main {
-        position: relative;
-        z-index: 1;
-      }
-
-      header {
-        padding: 2.3rem 10%;
-        padding-bottom: 1.4rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
-        backdrop-filter: blur(10px);
-        background: linear-gradient(
-          to bottom,
-          rgba(15, 23, 42, 0.9),
-          rgba(15, 23, 42, 0.5),
-          transparent
-        );
-      }
-
-      main {
-        padding: 2rem 10%;
-        max-width: 960px;
-      }
-
-      /* ---------- HERO / NAME / NLP THEME ---------- */
-
-      .hero-top {
+      /* Terminal Header */
+      .terminal-header {
+        background: #2d2d2d;
+        padding: 8px 12px;
         display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .label {
-        display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        padding: 0.25rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        color: #cbd5f5;
-        background: rgba(15, 23, 42, 0.6);
+        gap: 8px;
+        border-bottom: 1px solid #444;
       }
 
-      .label-dot {
-        width: 5px;
-        height: 5px;
+      .terminal-button {
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        background: #38bdf8;
+        display: inline-block;
       }
 
-      .name-row {
+      .btn-close {
+        background: #ff5f56;
+      }
+
+      .btn-minimize {
+        background: #ffbd2e;
+      }
+
+      .btn-maximize {
+        background: #27c93f;
+      }
+
+      .terminal-title {
+        color: #999;
+        font-size: 13px;
+        margin-left: 8px;
+      }
+
+      /* Terminal Body */
+      .terminal-body {
+        padding: 20px;
+        min-height: 500px;
+      }
+
+      /* Prompt */
+      .prompt {
+        color: #00ff00;
         display: flex;
         align-items: baseline;
-        gap: 0.25rem;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .user {
+        color: #5af78e;
+      }
+
+      .host {
+        color: #57c7ff;
+      }
+
+      .path {
+        color: #f3e430;
+      }
+
+      .dollar {
+        color: #ffffff;
+      }
+
+      /* Command Input Line */
+      .command-line {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .command {
+        color: #ffffff;
+      }
+
+      /* Output Text */
+      .output {
+        color: #cccccc;
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+      }
+
+      .output-header {
+        color: #5af78e;
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .output-subheader {
+        color: #57c7ff;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-bottom: 6px;
+      }
+
+      .comment {
+        color: #6a9955;
+      }
+
+      .string {
+        color: #ce9178;
+      }
+
+      .keyword {
+        color: #c586c0;
+      }
+
+      .function {
+        color: #dcdcaa;
+      }
+
+      .variable {
+        color: #9cdcfe;
+      }
+
+      /* Links */
+      a {
+        color: #57c7ff;
+        text-decoration: none;
+        border-bottom: 1px dotted #57c7ff;
+      }
+
+      a:hover {
+        color: #5af78e;
+        border-bottom-color: #5af78e;
+      }
+
+      /* Navigation Menu */
+      .nav-menu {
+        display: flex;
         flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 20px;
+        padding: 12px 0;
+        border-bottom: 1px solid #444;
       }
 
-      .name {
-        font-size: 2.4rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
+      .nav-item {
+        color: #57c7ff;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding: 4px 8px;
+        border: 1px solid transparent;
       }
 
-      .name .caret {
-        opacity: 1;
-        animation: blink 1s steps(2, start) infinite;
+      .nav-item:hover {
+        color: #5af78e;
+        border: 1px solid #5af78e;
+      }
+
+      .nav-item.active {
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        background: rgba(0, 255, 0, 0.1);
+      }
+
+      /* Section Content */
+      .section {
+        display: none;
+        animation: fadeIn 0.3s ease-in;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Code Blocks */
+      .code-block {
+        background: #0c0c0c;
+        border: 1px solid #333;
+        padding: 16px;
+        margin: 12px 0;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+
+      /* List Styles */
+      ul {
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      ul li:before {
+        content: "├─ ";
+        color: #666;
+        margin-right: 8px;
+      }
+
+      ul li:last-child:before {
+        content: "└─ ";
+      }
+
+      ul li {
+        margin: 8px 0;
+      }
+
+      /* Cursor Blink */
+      .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 18px;
+        background: #00ff00;
+        animation: blink 1s step-end infinite;
+        margin-left: 2px;
       }
 
       @keyframes blink {
@@ -116,317 +257,294 @@
         }
       }
 
-      .subtitle {
-        color: #9ca3af;
-        margin: 0.1rem 0 0.8rem;
-        max-width: 42rem;
-      }
-
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-top: 0.5rem;
-      }
-
-      .chip {
-        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        font-size: 0.75rem;
-        padding: 0.2rem 0.55rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.45);
-        background: rgba(15, 23, 42, 0.75);
-        white-space: nowrap;
-      }
-
-      .chip span {
-        opacity: 0.9;
-      }
-
-      /* ---------- NAV TABS ---------- */
-
-      nav {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .tab-button {
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        background: rgba(15, 23, 42, 0.85);
-        color: #e5e7eb;
-        padding: 0.35rem 0.9rem;
-        border-radius: 999px;
-        cursor: pointer;
-        font-size: 0.88rem;
-        transition: background 0.15s, color 0.15s, border-color 0.15s,
-          transform 0.1s;
-      }
-
-      .tab-button:hover {
-        background: rgba(30, 64, 175, 0.9);
-        transform: translateY(-1px);
-      }
-
-      .tab-button.active {
-        background: #e5e7eb;
-        color: #020617;
-        border-color: #e5e7eb;
-      }
-
-      /* ---------- TAB CONTENT ---------- */
-
-      .tab-content {
-        display: none;
-        animation: fadeIn 0.25s ease-out;
-        margin-bottom: 3rem;
-      }
-
-      .tab-content.active {
-        display: block;
-      }
-
-      h2 {
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-        font-size: 1.4rem;
-      }
-
-      p,
-      li {
-        line-height: 1.6;
-      }
-
-      ul {
-        padding-left: 1.2rem;
-      }
-
-      a {
-        color: #38bdf8;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      code {
-        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        font-size: 0.82rem;
-        background: rgba(15, 23, 42, 0.85);
-        padding: 0.1rem 0.25rem;
-        border-radius: 4px;
-        border: 1px solid rgba(148, 163, 184, 0.3);
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(4px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* ---------- FOOTER ---------- */
-
-      footer {
-        position: relative;
-        z-index: 1;
-        padding: 1.5rem 10%;
-        font-size: 0.75rem;
-        color: #6b7280;
-      }
-
-      /* ---------- RESPONSIVE ---------- */
-
+      /* Responsive */
       @media (max-width: 768px) {
-        header,
-        main,
-        footer {
-          padding: 1.5rem 1.25rem;
+        body {
+          padding: 10px;
         }
 
-        .name {
-          font-size: 1.9rem;
+        .terminal-body {
+          padding: 12px;
+        }
+
+        body {
+          font-size: 14px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="bg-pattern"></div>
+    <div class="terminal">
+      <!-- Terminal Header -->
+      <div class="terminal-header">
+        <span class="terminal-button btn-close"></span>
+        <span class="terminal-button btn-minimize"></span>
+        <span class="terminal-button btn-maximize"></span>
+        <span class="terminal-title">sophia@nlp: ~/portfolio</span>
+      </div>
 
-    <header>
-      <div class="hero-top">
-        <div class="label">
-          <span class="label-dot"></span>
-          <span>NLP · Linguistics · LLMs</span>
+      <!-- Terminal Body -->
+      <div class="terminal-body">
+        <!-- Initial Prompt -->
+        <div class="prompt">
+          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
         </div>
 
-        <!-- Name with typewriter effect -->
-        <div class="name-row">
-          <div class="name">
-            <span id="typed-name"></span><span class="caret">▌</span>
+        <div class="command-line">
+          <span class="command">cat about.txt</span>
+        </div>
+
+        <div class="output">
+<span class="output-header">Sophia Bahmani | NLP & Linguistics Researcher</span>
+<span class="comment"># Research: Progressive Personalization of LLMs for Predictive Typing</span>
+
+Hi, I'm Sophia. I focus on teaching large language models to adapt to 
+individual users for predictive typing and keystroke savings—making LLMs 
+that ...
+
+<span class="output-subheader">$ whoami --verbose</span>
+Name:      Sophia Bahmani
+Role:      NLP & Linguistics Researcher
+Interests: [ "LLMs", "personalization", "n-grams", "syntax & semantics" ]
+Languages: [ "en_US" ]
+Status:    <span class="string">actively researching</span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="prompt">
+          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+        </div>
+
+        <div class="command-line">
+          <span class="command">ls sections/</span>
+        </div>
+
+        <div class="nav-menu">
+          <span class="nav-item active" data-section="home">home.md</span>
+          <span class="nav-item" data-section="research">research.py</span>
+          <span class="nav-item" data-section="teaching">teaching.log</span>
+          <span class="nav-item" data-section="education">education.txt</span>
+          <span class="nav-item" data-section="publications">publications.bib</span>
+          <span class="nav-item" data-section="cv">cv.pdf</span>
+          <span class="nav-item" data-section="contact">contact.json</span>
+        </div>
+
+        <!-- Sections -->
+        <div id="home" class="section active">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">cat sections/home.md</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Home</span>
+
+My current research explores how to make language models more personal and 
+efficient. Instead of ...
+
+The goal? ...
+
+<span class="output-subheader">Research Focus:</span>
+• Progressive personalization in LLMs
+• Keystroke prediction and efficiency
+• N-gram statistics and user modeling
+• Adaptive language generation
           </div>
         </div>
 
-        <!-- Short description – edit this text to match you -->
-        <p class="subtitle">
-          Research interests in natural language processing, language models,
-          and how meaning emerges from tokens, n‑grams, and human language.
-        </p>
-
+        <div id="research" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">python3 sections/research.py</span>
+          </div>
+          <div class="output">
+<span class="comment"># research.py - Current Research Projects</span>
+<div class="code-block"><span class="keyword">class</span> <span class="function">ResearchProject</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self):
+        self.title = <span class="string">"Progressive Personalization of Large Language Models"</span>
+        self.subtitle = <span class="string">"For Predictive Typing and Keystroke Savings"</span>
         
-
-
-      <!-- Navigation Tabs -->
-      <nav>
-        <button class="tab-button active" data-tab="home">Home</button>
-        <button class="tab-button" data-tab="teaching">Teaching</button>
-        <button class="tab-button" data-tab="education">Education</button>
-        <button class="tab-button" data-tab="cv">CV</button>
-        <button class="tab-button" data-tab="publications">Publications</button>
-        <button class="tab-button" data-tab="contact">Contact</button>
-      </nav>
-    </header>
-
-    <main>
-      <!-- HOME -->
-      <section id="home" class="tab-content active">
-        <h2>Home</h2>
-
-        <p>
-          Hi, I’m Sophia. My current research focuses on progressive
-          personalization of large language models for predictive typing and
-          keystroke savings — teaching LLMs to adapt to individual users so they
-          type less while saying the same thing.
-        </p>
-
-        <pre><code>#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-
-class NLPLinguist:
-    def __init__(self):
-        self.name = "Sophia Bahmani"
-        self.role = "NLP &amp; Linguistics Researcher"
-        self.research_interests = [
-            "large language models",
-            "personalization",
-            "n-gram statistics",
-            "syntax &amp; semantics",
-            "corpus linguistics",
+        self.objectives = [
+            <span class="string">"Develop adaptive LLM systems for individual users"</span>,
+            <span class="string">"Reduce typing effort through smart prediction"</span>,
+            <span class="string">"Maintain semantic accuracy while saving keystrokes"</span>,
+            <span class="string">"Study n-gram patterns in personalized contexts"</span>
         ]
-        self.languages_spoken = ["en_US"]  # add your own codes here :)
+    
+    <span class="keyword">def</span> <span class="function">describe</span>(self):
+        <span class="keyword">return</span> <span class="string">"""
+        Teaching language models to understand not just *language* 
+        but *your language*—the unique way you express ideas.
+        """</span>
 
-        self.project_title = (
-            "Progressive Personalization of Large Language Models "
-            "for Predictive Typing and Keystroke Savings"
-        )
+project = ResearchProject()
+print(project.describe())</div>
 
-    def favorite_ngram(self):
-        return ("natural", "language", "processing")
+<span class="output-subheader">Research Areas:</span>
+• User-adaptive language modeling
+• Real-time personalization algorithms
+• Corpus linguistics and individual variation
+• Computational efficiency in prediction
+          </div>
+        </div>
 
-    def introduce(self):
-        ngram = " ".join(self.favorite_ngram())
-        print(f"👋 Hi, I'm {self.name} — {self.role}.")
-        print(f"I spend a lot of time thinking about '{ngram}' and how LLMs handle it.")
-        print(f"My current research: {self.project_title}.")
-        print(
-            "In short, I study how to personalize LLMs so they adapt to each user "
-            "and save them keystrokes while typing."
-        )
+        <div id="teaching" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">tail -n 20 sections/teaching.log</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Teaching Experience</span>
 
+<span class="comment"># teaching experience</span>
 
-if __name__ == "__main__":
-    me = NLPLinguist()
-    me.introduce()</code></pre>
-      </section>
+<ul>
+<li><span class="variable">[Course Name]</span> - [Institution], [Year/Term]
+   Description: Introduction to linguistics and language structure</li>
 
-      <!-- TEACHING -->
-      <section id="teaching" class="tab-content">
-        <h2>Teaching</h2>
-        <p>
-          You can describe your teaching experience here. Replace the examples
-          with your real courses.
-        </p>
-        <ul>
-          <li>
-            <strong>[Course Name]</strong>, [Institution], [Year/Term] – Short
-            one‑sentence description, e.g. “Introduction to linguistics and
-            language structure.”
-          </li>
-          <li>
-            <strong>[Course Name]</strong>, [Institution], [Year/Term] – Maybe
-            an NLP‑oriented class, tutorials, or TA work.
-          </li>
-        </ul>
-      </section>
+<li><span class="variable">[Course Name]</span> - [Institution], [Year/Term]
+   Description: NLP methods and computational linguistics</li>
 
-      <!-- EDUCATION -->
-      <section id="education" class="tab-content">
-        <h2>Education</h2>
-        <ul>
-          <li>
-            <strong>[Degree]</strong>, [Major] – [University], [Years]<br />
-            Thesis / focus: [Short description, e.g. “NLP methods for analyzing
-            learner language”].
-          </li>
-          <li>
-            <strong>[Degree]</strong>, [Major] – [University], [Years]
-          </li>
-        </ul>
-      </section>
+<li><span class="variable">[Course Name]</span> - [Institution], [Year/Term]
+   Description: Teaching assistant role or tutorial sessions</li>
+</ul>
+          </div>
+        </div>
 
-      <!-- CV -->
-      <section id="cv" class="tab-content">
-        <h2>CV</h2>
-        <p>
-          Upload your CV as <code>cv.pdf</code> in this repository, then link it
-          here.
-        </p>
-        <p>
-          Example:
-          <a href="cv.pdf">Download my CV (PDF)</a>
-          <!-- Make sure a file named cv.pdf exists in your repo -->
-        </p>
-        <p>
-          You can also summarize key sections of your CV below (experience,
-          skills, awards, etc.).
-        </p>
-      </section>
+        <div id="education" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">cat sections/education.txt</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Education</span>
 
-      <!-- PUBLICATIONS -->
-      <section id="publications" class="tab-content">
-        <h2>Publications</h2>
-        <p>List selected papers, preprints, or projects here.</p>
-        <ul>
-          <li>
-            [Bahmani, S.] “Title about something NLP / linguistics,”
-            <em>[Journal or Conference]</em>, [Year].
-          </li>
-          <li>
-            [Bahmani, S.] “Another title,” <em>[Venue]</em>, [Year].
-          </li>
-        </ul>
-      </section>
+<ul>
+<li><span class="variable">[Degree]</span>, [Major] - [University], [Years]
+   Thesis: [Short description of my research focus]
+   Focus: NLP methods for analyzing learner language</li>
 
-      <!-- CONTACT -->
-      <section id="contact" class="tab-content">
-        <h2>Contact</h2>
-        <p>
-          Email:
-          <a href="mailto:youremail@example.com">youremail@example.com</a><br />
-          <!-- Replace above with your real email -->
-          [Optional] LinkedIn:
-          <a href="#">Your LinkedIn</a><br />
-          [Optional] GitHub:
-          <a href="#">Your GitHub</a>
-        </p>
-      </section>
-    </main>
+<li><span class="variable">[Degree]</span>, [Major] - [University], [Years]
+   Relevant coursework: [list key courses]</li>
+</ul>
+
+<span class="comment"># education details above</span>
+          </div>
+        </div>
+
+        <div id="publications" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">cat sections/publications.bib</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Publications</span>
+
+<span class="comment">@article{bahmani2024nlp,</span>
+<ul>
+<li><span class="variable">author</span> = {Bahmani, Sophia},</li>
+<li><span class="variable">title</span> = {Title about NLP/Linguistics Research},</li>
+<li><span class="variable">journal</span> = {Journal or Conference Name},</li>
+<li><span class="variable">year</span> = {2024}</li>
+</ul>
+<span class="comment">}</span>
+
+<span class="comment">@article{bahmani2023corpus,</span>
+<ul>
+<li><span class="variable">author</span> = {Bahmani, Sophia},</li>
+<li><span class="variable">title</span> = {Another Publication Title},</li>
+<li><span class="variable">venue</span> = {Conference/Journal},</li>
+<li><span class="variable">year</span> = {2023}</li>
+</ul>
+<span class="comment">}</span>
+
+<span class="comment">#  publications</span>
+          </div>
+        </div>
+
+        <div id="cv" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">open sections/cv.pdf</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Curriculum Vitae</span>
+
+<span class="comment"># Download my full CV:</span>
+→ <a href="cv.pdf" download>cv.pdf</a> <span class="comment">(PDF format)</span>
+
+<span class="output-subheader">Quick Summary:</span>
+• Research experience in NLP and linguistics
+• Publications in [list venues/journals]
+• Teaching and mentoring experience
+• Technical skills: Python, PyTorch, transformers, corpus analysis
+• Languages: English (native), [add others]
+
+<span class="comment"># Upload cv.pdf file to make the download link work</span>
+          </div>
+        </div>
+
+        <div id="contact" class="section">
+          <div class="prompt">
+            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          </div>
+          <div class="command-line">
+            <span class="command">cat sections/contact.json</span>
+          </div>
+          <div class="output">
+<span class="output-header"># Contact Information</span>
+
+<div class="code-block">{
+  <span class="variable">"email"</span>: <span class="string">"<a href="mailto:youremail@example.com">sbahmani@mtu.edu</a>"</span>,
+  <span class="variable">"linkedin"</span>: <span class="string">"<a href="#">my-linkedin-profile</a>"</span>,
+  <span class="variable">"github"</span>: <span class="string">"<a href="#">Sophia-bahmani</a>"</span>,
+  <span class="variable">"scholar"</span>: <span class="string">"<a href="#">google-scholar-profile</a>"</span>,
+  <span class="variable">"office"</span>: <span class="string">"[office location/building]"</span>,
+  <span class="variable">"status"</span>: <span class="string">"open to collaboration"</span>
+}</div>
+
+<span class="comment"># Feel free to reach out about research collaborations,</span>
+<span class="comment"># NLP projects, or just to chat about language models!</span>
+          </div>
+        </div>
+
+        <!-- Cursor Prompt -->
+        <div class="prompt">
+          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tab Navigation
+      const navItems = document.querySelectorAll('.nav-item');
+      const sections = document.querySelectorAll('.section');
+
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const targetSection = item.getAttribute('data-section');
+
+          // Remove active class from all
+          navItems.forEach(nav => nav.classList.remove('active'));
+          sections.forEach(section => section.classList.remove('active'));
+
+          // Add active class to clicked
+          item.classList.add('active');
+          document.getElementById(targetSection).classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>
