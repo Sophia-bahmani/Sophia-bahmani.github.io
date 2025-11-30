@@ -151,6 +151,14 @@
         color: #9cdcfe;
       }
 
+      /* Typing caret next to your name */
+      .typing-caret {
+        display: inline-block;
+        width: 8px;
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+      }
+
       /* Links */
       a {
         color: #57c7ff;
@@ -287,7 +295,9 @@
       <div class="terminal-body">
         <!-- Initial Prompt -->
         <div class="prompt">
-          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          <span class="user">sophia</span><span>@</span
+          ><span class="host">nlp</span><span>:</span
+          ><span class="path">~</span><span class="dollar">$</span>
         </div>
 
         <div class="command-line">
@@ -295,7 +305,9 @@
         </div>
 
         <div class="output">
-<span class="output-header">Sophia Bahmani | NLP & Linguistics Researcher</span>
+<span class="output-header">
+  <span id="typed-name"></span><span class="typing-caret">█</span> | NLP &amp; Linguistics Researcher
+</span>
 <span class="comment"># Research: Progressive Personalization of LLMs for Predictive Typing</span>
 
 Hi, I'm Sophia. I focus on teaching large language models to adapt to 
@@ -304,15 +316,17 @@ that ...
 
 <span class="output-subheader">$ whoami --verbose</span>
 Name:      Sophia Bahmani
-Role:      NLP & Linguistics Researcher
-Interests: [ "LLMs", "personalization", "n-grams", "syntax & semantics" ]
+Role:      NLP &amp; Linguistics Researcher
+Interests: [ "LLMs", "personalization", "n-grams", "syntax &amp; semantics" ]
 Languages: [ "en_US" ]
 Status:    <span class="string">actively researching</span>
         </div>
 
         <!-- Navigation -->
         <div class="prompt">
-          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          <span class="user">sophia</span><span>@</span
+          ><span class="host">nlp</span><span>:</span
+          ><span class="path">~</span><span class="dollar">$</span>
         </div>
 
         <div class="command-line">
@@ -324,7 +338,9 @@ Status:    <span class="string">actively researching</span>
           <span class="nav-item" data-section="research">research.py</span>
           <span class="nav-item" data-section="teaching">teaching.log</span>
           <span class="nav-item" data-section="education">education.txt</span>
-          <span class="nav-item" data-section="publications">publications.bib</span>
+          <span class="nav-item" data-section="publications"
+            >publications.bib</span
+          >
           <span class="nav-item" data-section="cv">cv.pdf</span>
           <span class="nav-item" data-section="contact">contact.json</span>
         </div>
@@ -332,7 +348,9 @@ Status:    <span class="string">actively researching</span>
         <!-- Sections -->
         <div id="home" class="section active">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">cat sections/home.md</span>
@@ -355,7 +373,9 @@ The goal? ...
 
         <div id="research" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">python3 sections/research.py</span>
@@ -393,7 +413,9 @@ print(project.describe())</div>
 
         <div id="teaching" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">tail -n 20 sections/teaching.log</span>
@@ -418,7 +440,9 @@ print(project.describe())</div>
 
         <div id="education" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">cat sections/education.txt</span>
@@ -441,7 +465,9 @@ print(project.describe())</div>
 
         <div id="publications" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">cat sections/publications.bib</span>
@@ -473,7 +499,9 @@ print(project.describe())</div>
 
         <div id="cv" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">open sections/cv.pdf</span>
@@ -497,7 +525,9 @@ print(project.describe())</div>
 
         <div id="contact" class="section">
           <div class="prompt">
-            <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+            <span class="user">sophia</span><span>@</span
+            ><span class="host">nlp</span><span>:</span
+            ><span class="path">~</span><span class="dollar">$</span>
           </div>
           <div class="command-line">
             <span class="command">cat sections/contact.json</span>
@@ -506,7 +536,7 @@ print(project.describe())</div>
 <span class="output-header"># Contact Information</span>
 
 <div class="code-block">{
-  <span class="variable">"email"</span>: <span class="string">"<a href="mailto:youremail@example.com">sbahmani@mtu.edu</a>"</span>,
+  <span class="variable">"email"</span>: <span class="string">"<a href="mailto:sbahmani@mtu.edu">sbahmani@mtu.edu</a>"</span>,
   <span class="variable">"linkedin"</span>: <span class="string">"<a href="#">my-linkedin-profile</a>"</span>,
   <span class="variable">"github"</span>: <span class="string">"<a href="#">Sophia-bahmani</a>"</span>,
   <span class="variable">"scholar"</span>: <span class="string">"<a href="#">google-scholar-profile</a>"</span>,
@@ -521,28 +551,49 @@ print(project.describe())</div>
 
         <!-- Cursor Prompt -->
         <div class="prompt">
-          <span class="user">sophia</span><span>@</span><span class="host">nlp</span><span>:</span><span class="path">~</span><span class="dollar">$</span>
+          <span class="user">sophia</span><span>@</span
+          ><span class="host">nlp</span><span>:</span
+          ><span class="path">~</span><span class="dollar">$</span>
           <span class="cursor"></span>
         </div>
       </div>
     </div>
 
     <script>
+      // Typewriter effect for your name in the header
+      (function () {
+        const typedNameEl = document.getElementById("typed-name");
+        const fullName = "Sophia Bahmani";
+        let index = 0;
+
+        if (typedNameEl) {
+          function typeNext() {
+            if (index <= fullName.length) {
+              typedNameEl.textContent = fullName.slice(0, index);
+              index++;
+              setTimeout(typeNext, 120); // typing speed in ms
+            }
+          }
+
+          typeNext();
+        }
+      })();
+
       // Tab Navigation
-      const navItems = document.querySelectorAll('.nav-item');
-      const sections = document.querySelectorAll('.section');
+      const navItems = document.querySelectorAll(".nav-item");
+      const sections = document.querySelectorAll(".section");
 
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const targetSection = item.getAttribute('data-section');
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const targetSection = item.getAttribute("data-section");
 
-          // Remove active class from all
-          navItems.forEach(nav => nav.classList.remove('active'));
-          sections.forEach(section => section.classList.remove('active'));
+          // Remove active from all
+          navItems.forEach((nav) => nav.classList.remove("active"));
+          sections.forEach((section) => section.classList.remove("active"));
 
-          // Add active class to clicked
-          item.classList.add('active');
-          document.getElementById(targetSection).classList.add('active');
+          // Add active to clicked
+          item.classList.add("active");
+          document.getElementById(targetSection).classList.add("active");
         });
       });
     </script>
