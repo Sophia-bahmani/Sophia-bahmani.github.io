@@ -1,11 +1,460 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>Sophia Bahmani</title>
+    <meta charset="UTF-8" />
+    <title>Sophia Bahmani | NLP & Linguistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* ---------- BASE LAYOUT ---------- */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+        color: #e5e7eb;
+      }
+
+      /* subtle "token" looking grid in the background */
+      .bg-pattern {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.16;
+        background-image: linear-gradient(
+            rgba(148, 163, 184, 0.25) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            90deg,
+            rgba(148, 163, 184, 0.25) 1px,
+            transparent 1px
+          );
+        background-size: 26px 26px;
+        z-index: 0;
+      }
+
+      header,
+      main {
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        padding: 2.3rem 10%;
+        padding-bottom: 1.4rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+        backdrop-filter: blur(10px);
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.9),
+          rgba(15, 23, 42, 0.5),
+          transparent
+        );
+      }
+
+      main {
+        padding: 2rem 10%;
+        max-width: 960px;
+      }
+
+      /* ---------- HERO / NAME / NLP THEME ---------- */
+
+      .hero-top {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: #cbd5f5;
+        background: rgba(15, 23, 42, 0.6);
+      }
+
+      .label-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #38bdf8;
+      }
+
+      .name-row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+
+      .name {
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .name .caret {
+        opacity: 1;
+        animation: blink 1s steps(2, start) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .subtitle {
+        color: #9ca3af;
+        margin: 0.1rem 0 0.8rem;
+        max-width: 42rem;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+      }
+
+      .chip {
+        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: rgba(15, 23, 42, 0.75);
+        white-space: nowrap;
+      }
+
+      .chip span {
+        opacity: 0.9;
+      }
+
+      /* ---------- NAV TABS ---------- */
+
+      nav {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tab-button {
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e5e7eb;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 0.88rem;
+        transition: background 0.15s, color 0.15s, border-color 0.15s,
+          transform 0.1s;
+      }
+
+      .tab-button:hover {
+        background: rgba(30, 64, 175, 0.9);
+        transform: translateY(-1px);
+      }
+
+      .tab-button.active {
+        background: #e5e7eb;
+        color: #020617;
+        border-color: #e5e7eb;
+      }
+
+      /* ---------- TAB CONTENT ---------- */
+
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.25s ease-out;
+        margin-bottom: 3rem;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.4rem;
+      }
+
+      p,
+      li {
+        line-height: 1.6;
+      }
+
+      ul {
+        padding-left: 1.2rem;
+      }
+
+      a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      code {
+        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.82rem;
+        background: rgba(15, 23, 42, 0.85);
+        padding: 0.1rem 0.25rem;
+        border-radius: 4px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ---------- FOOTER ---------- */
+
+      footer {
+        position: relative;
+        z-index: 1;
+        padding: 1.5rem 10%;
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+
+      @media (max-width: 768px) {
+        header,
+        main,
+        footer {
+          padding: 1.5rem 1.25rem;
+        }
+
+        .name {
+          font-size: 1.9rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, I'm Sophia 👋</h1>
-    <p>This is my website.</p>
+    <div class="bg-pattern"></div>
+
+    <header>
+      <div class="hero-top">
+        <div class="label">
+          <span class="label-dot"></span>
+          <span>NLP · Linguistics · LLMs</span>
+        </div>
+
+        <!-- Name with typewriter effect -->
+        <div class="name-row">
+          <div class="name">
+            <span id="typed-name"></span><span class="caret">▌</span>
+          </div>
+        </div>
+
+        <!-- Short description – edit this text to match you -->
+        <p class="subtitle">
+          Research interests in natural language processing, language models,
+          and how meaning emerges from tokens, n‑grams, and human language.
+        </p>
+
+        <!-- fun NLP-flavored badges -->
+        <div class="chips">
+          <div class="chip"><span>tokenization()</span></div>
+          <div class="chip"><span>n‑grams · bigrams · trigrams</span></div>
+          <div class="chip"><span>LLMs &amp; prompting</span></div>
+          <div class="chip"><span>syntax &amp; semantics</span></div>
+          <div class="chip"><span>corpus linguistics</span></div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav>
+        <button class="tab-button active" data-tab="home">Home</button>
+        <button class="tab-button" data-tab="teaching">Teaching</button>
+        <button class="tab-button" data-tab="education">Education</button>
+        <button class="tab-button" data-tab="cv">CV</button>
+        <button class="tab-button" data-tab="publications">Publications</button>
+        <button class="tab-button" data-tab="contact">Contact</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section id="home" class="tab-content active">
+        <h2>Home</h2>
+        <p>
+          Hi, I’m Sophia. Welcome to my tiny NLP corner on the internet. I’m
+          interested in how we can teach machines to understand (or at least
+          <em>model</em>) human language – from classic n‑gram models to modern
+          large language models.
+        </p>
+        <p>
+          On this site you can find information about my teaching, education,
+          CV, and publications. I’m especially excited about projects that
+          connect linguistics with neural language models.
+        </p>
+
+        <p>
+          Example idea: measuring how often a phrase appears in a corpus as an
+          n‑gram versus how an LLM predicts it. Think of it as comparing
+          <code>P("language" | "natural")</code> in data vs. in a model.
+        </p>
+      </section>
+
+      <!-- TEACHING -->
+      <section id="teaching" class="tab-content">
+        <h2>Teaching</h2>
+        <p>
+          You can describe your teaching experience here. Replace the examples
+          with your real courses.
+        </p>
+        <ul>
+          <li>
+            <strong>[Course Name]</strong>, [Institution], [Year/Term] – Short
+            one‑sentence description, e.g. “Introduction to linguistics and
+            language structure.”
+          </li>
+          <li>
+            <strong>[Course Name]</strong>, [Institution], [Year/Term] – Maybe
+            an NLP‑oriented class, tutorials, or TA work.
+          </li>
+        </ul>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="tab-content">
+        <h2>Education</h2>
+        <ul>
+          <li>
+            <strong>[Degree]</strong>, [Major] – [University], [Years]<br />
+            Thesis / focus: [Short description, e.g. “NLP methods for analyzing
+            learner language”].
+          </li>
+          <li>
+            <strong>[Degree]</strong>, [Major] – [University], [Years]
+          </li>
+        </ul>
+      </section>
+
+      <!-- CV -->
+      <section id="cv" class="tab-content">
+        <h2>CV</h2>
+        <p>
+          Upload your CV as <code>cv.pdf</code> in this repository, then link it
+          here.
+        </p>
+        <p>
+          Example:
+          <a href="cv.pdf">Download my CV (PDF)</a>
+          <!-- Make sure a file named cv.pdf exists in your repo -->
+        </p>
+        <p>
+          You can also summarize key sections of your CV below (experience,
+          skills, awards, etc.).
+        </p>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section id="publications" class="tab-content">
+        <h2>Publications</h2>
+        <p>List selected papers, preprints, or projects here.</p>
+        <ul>
+          <li>
+            [Bahmani, S.] “Title about something NLP / linguistics,”
+            <em>[Journal or Conference]</em>, [Year].
+          </li>
+          <li>
+            [Bahmani, S.] “Another title,” <em>[Venue]</em>, [Year].
+          </li>
+        </ul>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:youremail@example.com">youremail@example.com</a><br />
+          <!-- Replace above with your real email -->
+          [Optional] LinkedIn:
+          <a href="#">Your LinkedIn</a><br />
+          [Optional] GitHub:
+          <a href="#">Your GitHub</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        Built with plain HTML, CSS, and a tiny bit of JavaScript —
+        like a minimal n‑gram model building up a whole sentence.
+      </div>
+    </footer>
+
+    <script>
+      // ---------- TYPEWRITER EFFECT FOR YOUR NAME ----------
+      document.addEventListener("DOMContentLoaded", () => {
+        const typedNameEl = document.getElementById("typed-name");
+        const fullName = "Sophia Bahmani"; // change this if you like
+        let index = 0;
+
+        function typeNextChar() {
+          if (!typedNameEl) return;
+          if (index <= fullName.length) {
+            typedNameEl.textContent = fullName.slice(0, index);
+            index++;
+            setTimeout(typeNextChar, 130); // typing speed in ms
+          }
+        }
+
+        typeNextChar();
+      });
+
+      // ---------- TABS LOGIC ----------
+      const buttons = document.querySelectorAll(".tab-button");
+      const sections = document.querySelectorAll(".tab-content");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-tab");
+
+          // update button states
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // show / hide sections
+          sections.forEach((sec) => {
+            if (sec.id === target) {
+              sec.classList.add("active");
+            } else {
+              sec.classList.remove("active");
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
